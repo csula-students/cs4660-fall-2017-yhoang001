@@ -65,7 +65,6 @@ def bfs(start, finish):
         for room in get_state(i[0]['id'])['neighbors']:
             if room not in nodes:
                 if room['id'] == finish['id']:
-                    print("reached")
                     N = i
 
                 q.put((room, i))
