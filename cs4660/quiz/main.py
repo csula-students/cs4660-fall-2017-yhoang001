@@ -67,9 +67,12 @@ def bfs(start, finish):
             if room not in nodes:
                 c += 1
                 if room['id'] == finish['id']:
+<<<<<<< HEAD
                     if q.empty():
                         return False
                     print("\nBFS founded after", c)
+=======
+>>>>>>> origin/quiz-2
                     N = i
                 q.put_nowait((room, i))
                 nodes.append(room)
