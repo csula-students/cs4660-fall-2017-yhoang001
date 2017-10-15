@@ -60,19 +60,15 @@ def bfs(start, finish):
     q = Queue()
     q.put((start, None))
     c = 0
-
     while (q.qsize() > 0):
         i = q.get()
         for room in get_state(i[0]['id'])['neighbors']:
             if room not in nodes:
                 c += 1
                 if room['id'] == finish['id']:
-<<<<<<< HEAD
                     if q.empty():
                         return False
                     print("\nBFS founded after", c)
-=======
->>>>>>> origin/quiz-2
                     N = i
                 q.put_nowait((room, i))
                 nodes.append(room)
@@ -115,17 +111,6 @@ def dijkstra(start, finish):
         finish['id'] = parent[finish['id']]
     moves.reverse()
     return moves
-
-def print_actions(actions, init_id):
-    prev_id = init_id
-    total = 0
-    for i in range(len(actions)):
-        prev_node = get_state(prev_id)
-        next_id = actions[i]['id']
-        total += actions[i]['event']['effect']
-        print("%s(%s):%s(%s):%i" % (prev_node['location']['name'], prev_id, actions[i]['action'], actions[i]['id'], actions[i]['event']['effect']))
-        prev_id = next_id
-    print("\nTotal HP: %i" % total)
 
 if __name__ == "__main__":
     # Your code starts here
