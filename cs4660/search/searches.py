@@ -3,7 +3,6 @@ Searches module defines all different search algorithms
 """
 from queue import Queue
 from graph import graph as gra
-import queue
 def bfs(graph, initial_node, dest_node):
     """
     Breadth First Search
@@ -44,7 +43,7 @@ def dfs(graph, initial_node, dest_node):
             return [graph.distance(initial_node, dest_node)]
         else:
             paths = dfs(graph, node, dest_node)
-            print()
+            # print(paths,'test')
             if paths != []:
                 actions.append(graph.distance(initial_node, node))
                 actions.extend(paths)
