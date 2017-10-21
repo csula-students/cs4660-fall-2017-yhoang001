@@ -26,7 +26,7 @@ def get_state(room_id):
     """
     get the room by its id and its neighbor
     """
-
+    
     body = {'id': room_id}
     return __json_request(GET_STATE_URL, body)
 
@@ -60,6 +60,7 @@ def bfs(start, finish):
     q = Queue()
     q.put((start, None))
     c = 0
+
     while (q.qsize() > 0):
         i = q.get()
         for room in get_state(i[0]['id'])['neighbors']:
@@ -111,6 +112,17 @@ def dijkstra(start, finish):
         finish['id'] = parent[finish['id']]
     moves.reverse()
     return moves
+
+def print_actions(actions, init_id):
+    prev_id = init_id
+    total = 0
+    for i in range(len(actions)):
+        prev_node = get_state(prev_id)
+        next_id = actions[i]['id']
+        total += actions[i]['event']['effect']
+        print("%s(%s):%s(%s):%i" % (prev_node['location']['name'], prev_id, actions[i]['action'], actions[i]['id'], actions[i]['event']['effect']))
+        prev_id = next_id
+    print("\nTotal HP: %i" % total)
 
 if __name__ == "__main__":
     # Your code starts here
